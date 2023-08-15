@@ -14,7 +14,7 @@ class formaPagamento {
 }
 
 class CaixaDaLanchonete {
-    static ITEMS_CARDAPIO = [
+    static ITENS_CARDAPIO = [
         new Cardapio("cafe", "Café", 3.00),
         new Cardapio("chantily", "Chantily (extra do Café)", 1.50, "cafe"),
         new Cardapio("suco", "Suco Natural", 6.20),
@@ -39,7 +39,7 @@ class CaixaDaLanchonete {
         let valorTotal = 0;
 
         for (const item of itens) {
-            const quantAndItens = this.dividiItens(item);
+            const quantAndItens = this.divideItens(item);
 
             if (typeof quantAndItens === "string") {
                 return 'Item inválido!';
@@ -69,7 +69,7 @@ class CaixaDaLanchonete {
         return `R$ ${valorTotal.toFixed(2).replace('.', ',')}`;
     }
 
-    dividiItens(item) {
+    divideItens(item) {
         const ItemDividido = item.split(",");
 
         if (ItemDividido.length !== 2) {
@@ -92,7 +92,7 @@ class CaixaDaLanchonete {
     }
 
     calcItemValue(tipoDeItem, quantidade, itens) {
-        const Cardapio = CaixaDaLanchonete.ITEMS_CARDAPIO.find(item => item.codigo === tipoDeItem);
+        const Cardapio = CaixaDaLanchonete.ITENS_CARDAPIO.find(item => item.codigo === tipoDeItem);
 
         if (!Cardapio) {
             return "Item inválido!";
@@ -106,7 +106,7 @@ class CaixaDaLanchonete {
     }
 
     temItemExtra(itens, itemExtra) {
-        return itens.some(item => this.dividiItens(item)[0] === itemExtra);
+        return itens.some(item => this.divideItens(item)[0] === itemExtra);
     }
 }
 
